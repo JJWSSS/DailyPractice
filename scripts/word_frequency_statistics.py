@@ -16,24 +16,24 @@ if __name__ == '__main__':
                     total_number += 1
                     tj[zi] += 1
 
-    print(total_number)
-
-    print(len(tj))
-    print(tj.most_common(100))
+    for a, b in tj.most_common(100):
+        print('{} {:0.4f}'.format(a, b/total_number))
 
     l = [1, 20, 100, 600, 2000, 3000, 6000]
 
+    print('前多少汉字频率之和')
+
     for n in l:
-        print('{} {:0.2f}'.format(n, sum([c[1] for c in tj.most_common(n)])/total_number))
+        print('{} {:0.4f}'.format(n, sum([c[1] for c in tj.most_common(n)])/total_number))
 
     H = 0
 
     for _, number in tj.items():
         frequency = number/total_number
-        H += frequency*log2(frequency)
+        H -= frequency*log2(frequency)
 
-    H = -H
-    print(H)
+    print('')
+    print('H(x) {}'.format(H))
 
 
 
